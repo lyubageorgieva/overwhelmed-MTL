@@ -1,11 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Button, Layout, Text } from '@ui-kitten/components';
 import React from 'react';
 
 const SignInScreen = () => {
   return (
-    <View>
+    <Layout>
       <Text>Sign in screen</Text>
-    </View>
+      <Button>SIGN IN</Button>
+    </Layout>
   );
 };
 

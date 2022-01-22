@@ -37,21 +37,15 @@ const styles = StyleSheet.create({
   titleStyle: {
     paddingTop: 10,
     fontWeight: 'bold',
-    justifyContent: 'center',
-    alignItems: 'center',
     marginVertical: 10,
   },
 
   textStyle: {
     fontWeight: 'bold',
-    justifyContent: 'center',
-    alignItems: 'center',
     marginVertical: 10,
   },
 
   signInButton: {
-    justifyContent: 'center',
-    alignItems: 'center',
     margin: 10,
   },
 

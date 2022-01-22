@@ -15,12 +15,13 @@ const Stack = createNativeStackNavigator();
 export default function App() {
 
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true)
 
   return (
     <>
       <ApplicationProvider {...eva} theme={eva.light}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName='Sign In'>
+          <Stack.Navigator initialRouteName='Chat'>
             <Stack.Screen name="Chat" component={ChatScreen} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
             <Stack.Screen name="Sign Up" component={SignUpScreen} />

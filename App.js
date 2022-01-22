@@ -24,7 +24,7 @@ export default function App() {
             <Stack.Screen name="Chat" component={ChatScreen} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
             <Stack.Screen name="Sign Up" component={SignUpScreen} />
-            <Stack.Screen name="Sign In" component={SignInScreen} />
+            <Stack.Screen name="Sign In" options={{headerShown: false}} component={SignInScreen} />
             {/* {user ? (
           <>
             <Stack.Screen name="Chat" component={ChatScreen} />

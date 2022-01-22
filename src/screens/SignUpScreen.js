@@ -2,8 +2,9 @@ import { StyleSheet, View } from 'react-native';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, Layout, Button, Text, Input } from '@ui-kitten/components';
 import React, { useState } from 'react';
+import { firebase } from '../firebase/config';
 
-const SignUpScreen = () => {
+export default function SignUpScreen({navigation}){
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -11,6 +12,34 @@ const SignUpScreen = () => {
   const [university, setUniversity] = useState('')
   const [host, setHost] = useState('')
   const [major, setMajor] = useState('')
+
+  const onSignUp = () => {
+    firebase.auth().createUserWithEmailAndPassword(email, password).then((response) => {
+      const uid = response.user.uid
+          const data = {
+            id: uid,
+            email,
+            username,
+            city,
+            university,
+            host,
+            major,
+          };
+          const usersRef = firebase.firestore().collection('users')
+          usersRef
+              .doc(uid)
+              .set(data)
+              .then(() => {
+                  navigation.navigate('Home', {user: data})
+              })
+              .catch((error) => {
+                  alert(error)
+              });
+      })
+      .catch((error) => {
+          alert(error)
+        });
+  };
 
   return (
     <Layout style={styles.container}>
@@ -26,8 +55,6 @@ const SignUpScreen = () => {
     </Layout>
   );
 };
-
-export default SignUpScreen;
 
 const styles = StyleSheet.create({
   titleStyle: {

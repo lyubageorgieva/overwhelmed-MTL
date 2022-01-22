@@ -16,8 +16,12 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        {user ? (
+      <Stack.Navigator initialRouteName='SignIn'>
+        <Stack.Screen name="Chat" component={ChatScreen} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="SignIn" component={SignUpScreen} />
+        <Stack.Screen name="SignUp" component={SignInScreen} />
+        {/* {user ? (
           <>
             <Stack.Screen name="Chat" component={ChatScreen} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
@@ -25,7 +29,7 @@ export default function App() {
             <Stack.Screen name="SignIn" component={SignUpScreen} />
             <Stack.Screen name="SignUp" component={SignInScreen} />
           </>
-        )}
+        )} */}
       </Stack.Navigator>
     </NavigationContainer>
   );

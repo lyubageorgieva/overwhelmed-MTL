@@ -11,4 +11,5 @@ const SignInScreen = () => {
 
 export default SignInScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+});

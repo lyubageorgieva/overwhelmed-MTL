@@ -4,6 +4,7 @@ import { ApplicationProvider, Divider, Text, Button } from '@ui-kitten/component
 import React from 'react';
 import { useState, useEffect} from 'react';
 import { getAuth } from 'firebase/auth';
+import { collection, query, where } from "firebase/firestore";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
@@ -11,6 +12,7 @@ const db = firebase.firestore();
 
 const ProfileScreen = ({navigation}) => {
 const [user, setUser] = useState({});
+const [secondUser, setSecondUser] = useState({});
 
 const getUser = async() => { 
 
@@ -31,6 +33,28 @@ const getUser = async() => {
 useEffect(() => {
     getUser();
   }, []);
+
+  const onMatch = async() => { 
+
+    db.collection("users").where("host", "==", user.university)
+      .get()
+      .then((querySnapshot) => {
+        let otherUser = {}
+          querySnapshot.forEach((doc) => {
+              otherUser = doc.data()
+          });
+          setSecondUser(otherUser)
+      })
+      .catch((error) => {
+          console.log("Error getting documents: ", error);
+      })
+
+      if (secondUser.host == user.university)
+      {navigation.navigate('Chat')}
+      else if(secondUser.city == user.city)
+      {navigation.navigate('Chat')}
+      else{<Text style={styles.fieldStyle} category='s1'>We didn't find anybody to match you with. We are sorry for the inconvenience</Text>}
+    }
 
   return (
     <View >
@@ -63,7 +87,7 @@ useEffect(() => {
 
           <View style={styles.buttonsAllign}>
             <View>
-              <Button style={styles.matchUpButton} appearance='ghost'> <Text style={styles.text}>Match</Text></Button>
+              <Button style={styles.matchUpButton} appearance='ghost' onPress={() => onMatch()}> <Text style={styles.text}>Match</Text></Button>
             </View>
             <View >
               <Button style={styles.matchUpButton} appearance='ghost'> <Text style={styles.text}>Logout</Text></Button>

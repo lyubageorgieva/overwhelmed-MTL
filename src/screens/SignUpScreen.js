@@ -4,10 +4,10 @@ import { ApplicationProvider, Layout, Button, Text, Input } from '@ui-kitten/com
 import React, { useState } from 'react';
 import { firebase } from '../firebase/config';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore"; 
+import { doc, setDoc, collection } from "firebase/firestore";
 
 
-export default function SignUpScreen({navigation}){
+export default function SignUpScreen({ navigation }) {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -18,32 +18,36 @@ export default function SignUpScreen({navigation}){
 
   const onSignUp = () => {
     const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password).then((response) => {
+    createUserWithEmailAndPassword(auth, email, password).then(async (response) => {
+
       const uid = response.user.uid
-          const data = {
-            id: uid,
-            email,
-            username,
-            city,
-            university,
-            host,
-            major,
-          };
-          setDoc(doc(firebase.firestore(), "users", "new-user-id"), {data});
-      })
+      const data = {
+        id: uid,
+        email,
+        username,
+        city,
+        university,
+        host,
+        major,
+      };
+      // Add a new document with a generated id
+      const usersRef = doc(collection(firebase.firestore(), "users"));
+      // later..
+      await setDoc(usersRef, data);
+    })
   };
 
   return (
     <Layout style={styles.container}>
-        <Text style={styles.titleStyle} category='h1'>Sign Up</Text>
-        <Input style={styles.inputBox} status='basic' placeholder='Username' onChangeText={username => setUsername(username)}/>
-        <Input style={styles.inputBox} status='basic' placeholder='Email' onChangeText={email => setEmail(email)}/>
-        <Input style={styles.inputBox} status='basic' placeholder='Password' onChangeText={password => setPassword(password)}/>
-        <Input style={styles.inputBox} status='basic' placeholder='City' onChangeText={city => setCity(city)}/>
-        <Input style={styles.inputBox} status='basic' placeholder='University you are attending' onChangeText={university => setUniversity(university)}/>
-        <Input style={styles.inputBox} status='basic' placeholder='University you will attend' onChangeText={host => setHost(host)}/>
-        <Input style={styles.inputBox} status='basic' placeholder='Major' onChangeText={major => setMajor(major)}/>
-        <Button style={styles.signUpButton} appearance='ghost' onPress={() => onSignUp()}>Sign Up</Button>
+      <Text style={styles.titleStyle} category='h1'>Sign Up</Text>
+      <Input style={styles.inputBox} status='basic' placeholder='Username' onChangeText={username => setUsername(username)} />
+      <Input style={styles.inputBox} status='basic' placeholder='Email' onChangeText={email => setEmail(email)} />
+      <Input style={styles.inputBox} status='basic' placeholder='Password' onChangeText={password => setPassword(password)} />
+      <Input style={styles.inputBox} status='basic' placeholder='City' onChangeText={city => setCity(city)} />
+      <Input style={styles.inputBox} status='basic' placeholder='University you are attending' onChangeText={university => setUniversity(university)} />
+      <Input style={styles.inputBox} status='basic' placeholder='University you will attend' onChangeText={host => setHost(host)} />
+      <Input style={styles.inputBox} status='basic' placeholder='Major' onChangeText={major => setMajor(major)} />
+      <Button style={styles.signUpButton} appearance='ghost' onPress={() => onSignUp()}>Sign Up</Button>
     </Layout>
   );
 };

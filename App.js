@@ -21,11 +21,11 @@ export default function App() {
     <>
       <ApplicationProvider {...eva} theme={eva.light}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName='Chat'>
+          <Stack.Navigator initialRouteName='Sign In'>
             <Stack.Screen name="Chat" component={ChatScreen} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
             <Stack.Screen name="Sign Up" component={SignUpScreen} />
-            <Stack.Screen name="Sign In" options={{headerShown: false}} component={SignInScreen} />
+            <Stack.Screen name="Sign In" options={{ headerShown: false }} component={SignInScreen} />
             {/* {user ? (
           <>
             <Stack.Screen name="Chat" component={ChatScreen} />

@@ -1,40 +1,40 @@
 import { StyleSheet, Image, View } from 'react-native';
 import * as eva from '@eva-design/eva';
-import {ApplicationProvider, Divider, Text, Button} from '@ui-kitten/components';
+import { ApplicationProvider, Divider, Text, Button } from '@ui-kitten/components';
 import React from 'react';
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }) => {
   return (
     <View >
       <View style={styles.header}></View>
-      <Image style={styles.avatar} source={{uri: 'http://www.gravatar.com/avatar/?d=mp'}}/>
+      <Image style={styles.avatar} source={{ uri: 'http://www.gravatar.com/avatar/?d=mp' }} />
       <View style={styles.content}>
-      <Text style={styles.titleStyle} category='h3'>Lucie Smith</Text>
+        <Text style={styles.titleStyle} category='h3'>Lucie Smith</Text>
       </View>
 
       <View style={styles.body}>
-      
-      <View style={styles.fields}>
-      <Text style={styles.fieldStyle} category='h5'>City</Text>
-      <Text style={styles.fieldStyle} category='s1'>Montreal</Text>
-      </View>
 
-      <View style={styles.fields}>
-      <Text style={styles.fieldStyle} category='h5'>Major</Text>
-      <Text style={styles.fieldStyle} category='s1'>Software Engineering</Text>
-      </View>
+        <View style={styles.fields}>
+          <Text style={styles.fieldStyle} category='h5'>City</Text>
+          <Text style={styles.fieldStyle} category='s1'>Montreal</Text>
+        </View>
 
-      <View style={styles.fields}>
-      <Text style={styles.fieldStyle} category='h5'>Home University</Text>
-      <Text style={styles.fieldStyle} category='s1'>Concordia University</Text>
-      </View>
+        <View style={styles.fields}>
+          <Text style={styles.fieldStyle} category='h5'>Major</Text>
+          <Text style={styles.fieldStyle} category='s1'>Software Engineering</Text>
+        </View>
 
-      <View style={styles.fields}>
-      <Text style={styles.fieldStyle} category='h5'>Host University</Text>
-      <Text style={styles.fieldStyle} category='s1'>University of Essex</Text>
-      </View>
+        <View style={styles.fields}>
+          <Text style={styles.fieldStyle} category='h5'>Home University</Text>
+          <Text style={styles.fieldStyle} category='s1'>Concordia University</Text>
+        </View>
 
-      <Button style={styles.matchUpButton} appearance='ghost'> <Text style={styles.text}>Match</Text></Button>
+        <View style={styles.fields}>
+          <Text style={styles.fieldStyle} category='h5'>Host University</Text>
+          <Text style={styles.fieldStyle} category='s1'>University of Essex</Text>
+        </View>
+
+        <Button style={styles.matchUpButton} appearance='ghost' onPress={() => navigation.navigate('Chat')}> <Text style={styles.text}>Match</Text></Button>
 
       </View>
     </View>
@@ -44,15 +44,15 @@ const ProfileScreen = () => {
 export default ProfileScreen;
 
 const styles = StyleSheet.create({
-  header:{
+  header: {
     backgroundColor: "#FFE2E2",
-    height:120,
+    height: 120,
   },
-  body:{
+  body: {
     marginLeft: 15,
     marginTop: 15,
   },
-  fields:{
+  fields: {
     paddingBottom: 15,
   },
   avatar: {
@@ -61,10 +61,10 @@ const styles = StyleSheet.create({
     borderRadius: 63,
     borderWidth: 4,
     borderColor: "white",
-    marginBottom:10,
-    alignSelf:'center',
+    marginBottom: 10,
+    alignSelf: 'center',
     position: 'absolute',
-    marginTop:30,
+    marginTop: 30,
   },
   titleStyle: {
     paddingTop: 25,
@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
     marginVertical: 10
   },
   content: {
-    alignItems:'center',
-    justifyContent:'center',
+    alignItems: 'center',
+    justifyContent: 'center',
     paddingTop: 20,
   },
   fieldStyle: {

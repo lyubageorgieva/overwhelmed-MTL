@@ -1,26 +1,52 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
-import { Chat, defaultTheme } from '@flyerhq/react-native-chat-ui'
+import React, { useState, useLayoutEffect, useCallback } from 'react';
+import { Chat, defaultTheme } from '@flyerhq/react-native-chat-ui';
+import { firebase } from '../firebase/config'
+import { collection, addDoc, orderBy, query, onSnapshot } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
 
 
 const ChatScreen = () => {
   const [messages, setMessages] = useState([]);
-  const user = { id: '06c33e8b-e835-4736-80f4-63f44b66666c' } //filler
+  const user = { id: getAuth().currentUser.uid } //filler
 
-  const addMessage = (message) => {
-    setMessages([message, ...messages]);
-  }
+  //https://blog.jscrambler.com/build-a-chat-app-with-firebase-and-react-native
+  useLayoutEffect(() => {
+    const collectionRef = collection(firebase.firestore(), 'chats');
+    const q = query(collectionRef, orderBy('createdAt', 'desc'));
 
-  const onPress = (message) => {
+    const unsubscribe = onSnapshot(q, querySnapshot => {
+      setMessages(
+        querySnapshot.docs.map(doc => ({
+          author: doc.data().author,
+          createdAt: doc.data().createdAt,
+          id: doc.data().id,
+          text: doc.data().text,
+          type: doc.data().type
+        }))
+      );
+    });
+
+    return unsubscribe;
+  });
+
+  //https://blog.jscrambler.com/build-a-chat-app-with-firebase-and-react-native
+  const onPress = useCallback((message) => {
     const textMessage = {
       author: user,
       createdAt: Date.now(),
-      id: 0, //TESTING PURPOSES
+      id: uuidv4(),
       text: message.text,
       type: 'text'
     }
-    addMessage(textMessage)
-  }
+
+    setMessages([textMessage, ...messages]);
+    addDoc(collection(firebase.firestore(), 'chats'), textMessage);
+  }, []);
+
+
 
   return (
     <Chat

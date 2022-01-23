@@ -3,7 +3,7 @@ import * as eva from '@eva-design/eva';
 import { ApplicationProvider, Divider, Text, Button } from '@ui-kitten/components';
 import React from 'react';
 import { signOut, getAuth } from 'firebase/auth';
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { collection, query, where } from "firebase/firestore";
 
 import firebase from "firebase/compat/app";
@@ -11,9 +11,9 @@ import "firebase/compat/firestore";
 const db = firebase.firestore();
 
 
-const ProfileScreen = ({navigation}) => {
-const [user, setUser] = useState({});
-const [secondUser, setSecondUser] = useState({});
+const ProfileScreen = ({ navigation }) => {
+  const [user, setUser] = useState({});
+  const [secondUser, setSecondUser] = useState({});
 
   const getUser = async () => {
 
@@ -35,27 +35,25 @@ const [secondUser, setSecondUser] = useState({});
     getUser();
   }, []);
 
-  const onMatch = async() => { 
+  const onMatch = async () => {
 
     db.collection("users").where("host", "==", user.university)
       .get()
       .then((querySnapshot) => {
         let otherUser = {}
-          querySnapshot.forEach((doc) => {
-              otherUser = doc.data()
-          });
-          setSecondUser(otherUser)
+        querySnapshot.forEach((doc) => {
+          otherUser = doc.data()
+        });
+        setSecondUser(otherUser)
       })
       .catch((error) => {
-          console.log("Error getting documents: ", error);
+        console.log("Error getting documents: ", error);
       })
 
-      if (secondUser.host == user.university)
-      {navigation.navigate('Chat')}
-      else if(secondUser.city == user.city)
-      {navigation.navigate('Chat')}
-      else{<Text style={styles.fieldStyle} category='s1'>We didn't find anybody to match you with. We are sorry for the inconvenience</Text>}
-    }
+    if (secondUser.host == user.university) { navigation.navigate('Chat') }
+    else if (secondUser.city == user.city) { navigation.navigate('Chat') }
+    else { <Text style={styles.fieldStyle} category='s1'>We didn't find anybody to match you with. We are sorry for the inconvenience</Text> }
+  }
 
   return (
     <View >
@@ -86,14 +84,12 @@ const [secondUser, setSecondUser] = useState({});
           <Text style={styles.fieldStyle} category='s1'>{user.host}</Text>
         </View>
 
-
-          <View style={styles.buttonsAllign}>
-            <View>
-              <Button style={styles.matchUpButton} appearance='ghost' onPress={() => onMatch()}> <Text style={styles.text}>Match</Text></Button>
-            </View>
-            <View >
-              <Button style={styles.matchUpButton} appearance='ghost' onPress={() => signOut(getAuth())}> <Text style={styles.text}>Logout</Text></Button>
-            </View>
+        <View style={styles.buttonsAllign}>
+          <View>
+            <Button style={styles.matchUpButton} appearance='ghost' onPress={() => onMatch()}> <Text style={styles.text}>Match</Text></Button>
+          </View>
+          <View >
+            <Button style={styles.matchUpButton} appearance='ghost' onPress={() => signOut(getAuth())}> <Text style={styles.text}>Logout</Text></Button>
           </View>
         </View>
       </View>

@@ -3,6 +3,9 @@ import * as eva from '@eva-design/eva';
 import { ApplicationProvider, Layout, Button, Text, Input } from '@ui-kitten/components';
 import React, { useState } from 'react';
 import { firebase } from '../firebase/config';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore"; 
+
 
 export default function SignUpScreen({navigation}){
   const [username, setUsername] = useState('')
@@ -14,7 +17,8 @@ export default function SignUpScreen({navigation}){
   const [major, setMajor] = useState('')
 
   const onSignUp = () => {
-    firebase.auth().createUserWithEmailAndPassword(email, password).then((response) => {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password).then((response) => {
       const uid = response.user.uid
           const data = {
             id: uid,
@@ -25,20 +29,8 @@ export default function SignUpScreen({navigation}){
             host,
             major,
           };
-          const usersRef = firebase.firestore().collection('users')
-          usersRef
-              .doc(uid)
-              .set(data)
-              .then(() => {
-                  navigation.navigate('Home', {user: data})
-              })
-              .catch((error) => {
-                  alert(error)
-              });
+          setDoc(doc(firebase.firestore(), "users", "new-user-id"), {data});
       })
-      .catch((error) => {
-          alert(error)
-        });
   };
 
   return (
@@ -51,7 +43,7 @@ export default function SignUpScreen({navigation}){
         <Input style={styles.inputBox} status='basic' placeholder='University you are attending' onChangeText={university => setUniversity(university)}/>
         <Input style={styles.inputBox} status='basic' placeholder='University you will attend' onChangeText={host => setHost(host)}/>
         <Input style={styles.inputBox} status='basic' placeholder='Major' onChangeText={major => setMajor(major)}/>
-        <Button style={styles.signUpButton} appearance='ghost'>Sign Up</Button>
+        <Button style={styles.signUpButton} appearance='ghost' onPress={() => onSignUp()}>Sign Up</Button>
     </Layout>
   );
 };

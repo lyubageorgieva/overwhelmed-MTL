@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Alert } from 'react-native';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, Layout, Button, Text, Input } from '@ui-kitten/components';
 import React, { useState } from 'react';
@@ -36,6 +36,11 @@ export default function SignUpScreen({ navigation }) {
       // later..
       await setDoc(usersRef, data);
     })
+    .then((userRecord) => {
+      navigation.navigate('Sign In')
+    })
+    .catch(err => 
+      Alert.alert("You have to fill every field correctly"))
   };
 
   return (

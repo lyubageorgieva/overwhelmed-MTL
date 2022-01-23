@@ -12,9 +12,11 @@ const ChatScreen = () => {
   const [messages, setMessages] = useState([]);
   const user = { id: getAuth().currentUser.uid } //filler
 
+  const chatID = '123'
+
   //https://blog.jscrambler.com/build-a-chat-app-with-firebase-and-react-native
   useLayoutEffect(() => {
-    const collectionRef = collection(firebase.firestore(), 'chats');
+    const collectionRef = collection(firebase.firestore(), 'pairs', chatID, 'chats');
     const q = query(collectionRef, orderBy('createdAt', 'desc'));
 
     const unsubscribe = onSnapshot(q, querySnapshot => {
@@ -43,7 +45,7 @@ const ChatScreen = () => {
     }
 
     setMessages([textMessage, ...messages]);
-    addDoc(collection(firebase.firestore(), 'chats'), textMessage);
+    addDoc(collection(firebase.firestore(), 'pairs', chatID, 'chats'), textMessage);
   }, []);
 
 

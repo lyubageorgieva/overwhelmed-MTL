@@ -50,8 +50,18 @@ const ProfileScreen = ({ navigation }) => {
         console.log("Error getting documents: ", error);
       })
 
-    if (secondUser.host == user.university) { navigation.navigate('Chat') }
-    else if (secondUser.city == user.city) { navigation.navigate('Chat') }
+    if (secondUser.host == user.university) {
+      navigation.navigate('Chat', {
+        user1: user.id,
+        user2: secondUser.id
+      })
+    }
+    else if (secondUser.city == user.city) {
+      navigation.navigate('Chat', {
+        user1: user.id,
+        user2: secondUser.id
+      })
+    }
     else { <Text style={styles.fieldStyle} category='s1'>We didn't find anybody to match you with. We are sorry for the inconvenience</Text> }
   }
 

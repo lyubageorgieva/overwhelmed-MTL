@@ -66,7 +66,12 @@ const styles = StyleSheet.create({
   },
 
   signInButton: {
-    margin: 10,
+    borderColor:"#FFC7C7",
+    backgroundColor: "#FFC7C7",
+    marginTop: 50,
+    marginBottom: 30,
+    marginLeft: 30,
+    marginRight: 30
   },
 
   content: {
@@ -74,10 +79,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
     padding: 10,
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: "#F6F6F6"
   },
 
   inputStyle: {
-    margin: 5,
+    margin: 15,
+    borderRadius: 4,
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 30,
+    marginRight: 30
   },
 
   signUpButton: {

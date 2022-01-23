@@ -3,14 +3,21 @@ import "firebase/compat/firestore";
 import 'firebase/compat/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCxaDuJFWou3Ac7DNlNKonAvO12AzX6KfQ",
-  authDomain: "uchange-1c51c.firebaseapp.com",
-  projectId: "uchange-1c51c",
-  storageBucket: "uchange-1c51c.appspot.com",
-  messagingSenderId: "959111341797",
-  appId: "1:959111341797:web:78d64edc30e4692b0f560c",
-  measurementId: "G-4ZP069MLC6"
+
+  apiKey: "AIzaSyCgCW67WQVX5OHM-FDHWPHauKByI3olsSM",
+
+  authDomain: "uchange3-98b61.firebaseapp.com",
+
+  projectId: "uchange3-98b61",
+
+  storageBucket: "uchange3-98b61.appspot.com",
+
+  messagingSenderId: "1041434161742",
+
+  appId: "1:1041434161742:web:a5f8e5b43f6ac089f1891f"
+
 };
+
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);

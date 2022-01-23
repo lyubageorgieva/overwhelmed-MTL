@@ -8,13 +8,27 @@ import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 
 
-const ChatScreen = () => {
+
+const ChatScreen = ({ route, navigation }) => {
   const [messages, setMessages] = useState([]);
-  const user = { id: getAuth().currentUser.uid } //filler
+  const user = { id: getAuth().currentUser.uid }
+  const { user1, user2 } = route.params;
+
+  createChatID = () => {
+    const sortID = [];
+    sortID.push(user1);
+    sortID.push(user2);
+    sortID.sort();
+    return sortID.join('_');
+  };
+
+  const chatID = createChatID();
+
+
 
   //https://blog.jscrambler.com/build-a-chat-app-with-firebase-and-react-native
   useLayoutEffect(() => {
-    const collectionRef = collection(firebase.firestore(), 'chats');
+    const collectionRef = collection(firebase.firestore(), 'pairs', chatID, 'chats');
     const q = query(collectionRef, orderBy('createdAt', 'desc'));
 
     const unsubscribe = onSnapshot(q, querySnapshot => {
@@ -43,7 +57,7 @@ const ChatScreen = () => {
     }
 
     setMessages([textMessage, ...messages]);
-    addDoc(collection(firebase.firestore(), 'chats'), textMessage);
+    addDoc(collection(firebase.firestore(), 'pairs', chatID, 'chats'), textMessage);
   }, []);
 
 

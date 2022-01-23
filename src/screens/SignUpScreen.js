@@ -40,13 +40,13 @@ export default function SignUpScreen({ navigation }) {
   return (
     <Layout style={styles.container}>
       <Text style={styles.titleStyle} category='h1'>Sign Up</Text>
-      <Input style={styles.inputBox} status='basic' placeholder='Username' onChangeText={username => setUsername(username)} />
-      <Input style={styles.inputBox} status='basic' placeholder='Email' onChangeText={email => setEmail(email)} />
-      <Input style={styles.inputBox} status='basic' placeholder='Password' onChangeText={password => setPassword(password)} />
-      <Input style={styles.inputBox} status='basic' placeholder='City' onChangeText={city => setCity(city)} />
-      <Input style={styles.inputBox} status='basic' placeholder='University you are attending' onChangeText={university => setUniversity(university)} />
-      <Input style={styles.inputBox} status='basic' placeholder='University you will attend' onChangeText={host => setHost(host)} />
-      <Input style={styles.inputBox} status='basic' placeholder='Major' onChangeText={major => setMajor(major)} />
+      <Input style={styles.inputBox} status='basic' autoCapitalize='none' placeholder='Username' onChangeText={username => setUsername(username)} />
+      <Input style={styles.inputBox} status='basic' autoCapitalize='none' placeholder='Email' onChangeText={email => setEmail(email)} />
+      <Input style={styles.inputBox} status='basic' autoCapitalize='none' placeholder='Password' secureTextEntry={secureTextEntry} onChangeText={password => setPassword(password)} />
+      <Input style={styles.inputBox} status='basic' autoCapitalize='none' placeholder='City' onChangeText={city => setCity(city)} />
+      <Input style={styles.inputBox} status='basic' autoCapitalize='none' placeholder='University you are attending' onChangeText={university => setUniversity(university)} />
+      <Input style={styles.inputBox} status='basic' autoCapitalize='none' placeholder='University you will attend' onChangeText={host => setHost(host)} />
+      <Input style={styles.inputBox} status='basic' autoCapitalize='none' placeholder='Major' onChangeText={major => setMajor(major)} />
       <Button style={styles.signUpButton} appearance='ghost' onPress={() => onSignUp()}>Sign Up</Button>
     </Layout>
   );

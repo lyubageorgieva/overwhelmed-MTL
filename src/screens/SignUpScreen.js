@@ -7,6 +7,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc, collection } from "firebase/firestore";
 
 
+//https://www.freecodecamp.org/news/react-native-firebase-tutorial/ 
 export default function SignUpScreen({ navigation }) {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')

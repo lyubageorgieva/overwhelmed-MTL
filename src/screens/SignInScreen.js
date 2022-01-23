@@ -30,6 +30,7 @@ const SignInScreen = ({ navigation }) => {
       <Text style={styles.titleStyle} category='h3'>Sign in</Text>
       <Input
         style={styles.inputStyle}
+        autoCapitalize='none'
         placeholder='Enter your email address'
         email={email}
         label='Email'
@@ -37,6 +38,7 @@ const SignInScreen = ({ navigation }) => {
       />
       <Input
         style={styles.inputStyle}
+        autoCapitalize='none'
         password={setPassword}
         label='Password'
         placeholder='Enter your password'

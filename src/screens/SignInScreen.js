@@ -1,8 +1,10 @@
-import { StyleSheet, TextInput } from 'react-native';
+import { StyleSheet, TextInput, Image, View } from 'react-native';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, Button, Layout, Text, Input } from '@ui-kitten/components';
 import React from 'react';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
+const logo = require('../../assets/uChange.png');
 
 const SignInScreen = ({ navigation }) => {
   const [email, setEmail] = React.useState('');
@@ -27,6 +29,12 @@ const SignInScreen = ({ navigation }) => {
 
   return (
     <Layout style={styles.content}>
+      <View>
+        <Image
+            style={styles.logo}
+            source={logo}
+        />
+      </View>
       <Text style={styles.titleStyle} category='h3'>Sign in</Text>
       <Input
         style={styles.inputStyle}
@@ -96,4 +104,14 @@ const styles = StyleSheet.create({
   signUpButton: {
     color: "#0000FF",
   },
+
+  logo: {
+    width: 130,
+    height: 130,
+    borderRadius: 63,
+    borderWidth: 4,
+    borderColor: "white",
+    marginBottom: 10,
+    alignSelf: 'center',    
+    },
 });

@@ -15,6 +15,7 @@ export default function SignUpScreen({ navigation }) {
   const [university, setUniversity] = useState('')
   const [host, setHost] = useState('')
   const [major, setMajor] = useState('')
+  const [secureTextEntry, setSecureTextEntry] = React.useState(true);
 
   const onSignUp = () => {
     const auth = getAuth();

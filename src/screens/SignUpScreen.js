@@ -54,7 +54,7 @@ export default function SignUpScreen({ navigation }) {
       <Input style={styles.inputBox} status='basic' autoCapitalize='none' placeholder='University you are attending' onChangeText={university => setUniversity(university)} />
       <Input style={styles.inputBox} status='basic' autoCapitalize='none' placeholder='University you will attend' onChangeText={host => setHost(host)} />
       <Input style={styles.inputBox} status='basic' autoCapitalize='none' placeholder='Major' onChangeText={major => setMajor(major)} />
-      <Button style={styles.signUpButton} appearance='ghost' onPress={() => onSignUp()}>Sign Up</Button>
+      <Button style={styles.signUpButton} onPress={() => onSignUp()}><Text style={styles.text}>SIGN UP</Text></Button>
     </Layout>
   );
 };
@@ -78,8 +78,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   signUpButton: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    borderColor:"#FFC7C7",
     backgroundColor: "#FFC7C7",
     marginTop: 50,
     marginBottom: 30,
@@ -95,5 +94,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginLeft: 30,
     marginRight: 30
+  },
+  text: {
+    color: 'white',
   },
 });

@@ -26,7 +26,7 @@ We learned a new language and a new tool in Firebase. We learned that making a s
 
 ## Preview
 
-<img src="https://user-images.githubusercontent.com/74876532/150867965-4616e029-68b6-4422-b7cf-38b33a5f0529.png" width="265" height="573">  <img src="https://user-images.githubusercontent.com/74876532/150868631-356ffe2e-1132-45cc-8204-6f02147b74fe.png" width="265" height="573">
+<img src="https://user-images.githubusercontent.com/74876532/150872728-6d2de5f3-ea44-469d-8c53-fae5693d8e4a.png" width="265" height="573">  <img src="https://user-images.githubusercontent.com/74876532/150868631-356ffe2e-1132-45cc-8204-6f02147b74fe.png" width="265" height="573">
 
 <img src="https://user-images.githubusercontent.com/74876532/150869272-332953cc-5b37-4659-a7fb-79a0f81e1c68.png" width="265" height="573">  <img src="https://user-images.githubusercontent.com/74876532/150868707-ae545b5b-1fb2-4bb3-a81a-9cda6995e222.png" width="265" height="573">
 
@@ -37,6 +37,7 @@ https://user-images.githubusercontent.com/74876532/150698373-a0720b84-bd4c-46a8-
 ## Link to DEVPOST
 
 https://devpost.com/software/uchange-s9xozk
+
 
 
 
